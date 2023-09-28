@@ -1,6 +1,6 @@
 # weather_app
 
-A new Flutter project.
+This App shows live weather data and also weather forecast every 3 hours 
 
 ## Getting Started
 
