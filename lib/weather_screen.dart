@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:weather_app/secrets.dart';
 
+import 'main.dart';
+
+
+
 
 
 class WeatherScreen extends StatefulWidget {
@@ -15,7 +19,20 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
+
+
+  void _toggleTheme(bool isSwitched) {
+    // Use the 'isSwitched' value to determine the theme mode
+    final themeMode = isSwitched ? ThemeMode.dark : ThemeMode.light;
+
+    // Update the theme using the MaterialApp's themeMode property
+    MyApp.changeThemeMode(context, themeMode);
+  }
+
+  bool isSwitched = false;
+
   late Future<Map<String,dynamic>> weather;
+  // bool isSwitched = false;
   @override
 
 
@@ -200,6 +217,23 @@ class _WeatherScreenState extends State<WeatherScreen> {
           IconButton(onPressed: (){setState(() {weather = getCurrentWeather();});}, icon: const Icon(Icons.refresh_rounded)),
         ],
       ),
+      drawer: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [ListTile(
+          title: Text("Dark Mode"),
+          trailing: Switch(
+            value: isSwitched,
+            onChanged: (value) {
+              setState(() {
+                isSwitched = value;
+                // Use a function to toggle the theme based on 'isSwitched'
+                _toggleTheme(isSwitched);
+              });
+            },
+          ),
+        ),],
+      ),
+
     );
 
   }
