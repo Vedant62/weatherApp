@@ -96,7 +96,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 fontWeight: FontWeight.bold,
                               ),),
                               const SizedBox(height: 16,),
-                              Icon(currentSky == 'Clouds'|| currentSky == 'Rain'?Icons.cloud: Icons.sunny, size: 64.0,),
+                              // Icon(currentSky == 'Clouds'|| currentSky == 'Rain'?Icons.cloud: Icons.sunny, size: 64.0,),
+                              Icon(currentSky == 'Clouds'? Icons.cloud: currentSky == 'Rain'?Icons.cloudy_snowing: Icons.sunny, size: 64.0,),
                               const SizedBox(height: 16,),
                               Text('$currentSky', style: TextStyle(fontSize: 20, ))
 
@@ -136,7 +137,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           return HourlyForecastItem(
                               time: DateFormat.j().format(time),
                               temperature: hourlyForecast['main']['temp'].toString(),
-                              icon: hourlyForecast['weather'][0]['main'] == 'Clouds' || hourlyForecast['weather'][0]['main'] == 'Rain'? Icons.cloud: Icons.sunny,
+                              icon: hourlyForecast['weather'][0]['main'] == 'Clouds'? Icons.cloud: hourlyForecast['weather'][0]['main'] == 'Rain'? Icons.cloudy_snowing :Icons.sunny,
                           );
 
                         }
